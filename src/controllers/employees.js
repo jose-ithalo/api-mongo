@@ -1,8 +1,13 @@
 import mongoose from "mongoose";
 import employee from "../models/employee.js";
 
-export const showTeste = (req, res) => {
-    return res.status(200).json('Arquivo de testes');
+export const showData = async (req, res) => {
+
+    const workerList = await employee.find();
+
+    // const workerList = await employee.find().select('name age role');
+
+    return res.status(200).json(workerList);
 }
 
 export const register = async (req, res) => {
