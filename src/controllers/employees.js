@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import employee from "../models/employee.js";
 
 export const showData = async (req, res) => {
@@ -25,6 +24,10 @@ export const register = async (req, res) => {
     return res.status(201).json(newEmployee);
 }
 
-mongoose.connect(`mongodb+srv://Joseph:${process.env.DB_PASSWORD}@cluster90.hxnbpxw.mongodb.net/`)
-    .then(() => { console.log('Mongoose conectado.'); })
-    .catch(() => { console.log('Não conectado'); })
+export const deleteData = async (req, res) => {
+    const { id } = req.params;
+
+    await employee.findByIdAndDelete({ _id: id });
+
+    return res.status(200).json('Funcionário deletado com sucesso.');
+}
