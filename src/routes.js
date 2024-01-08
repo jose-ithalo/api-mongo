@@ -1,10 +1,12 @@
 import { Router } from 'express';
-import { showData, register } from './controllers/employees.js';
+import { showData, register, deleteData } from './controllers/employees.js';
 
 const routes = Router();
 
 routes.get('/', showData);
 
 routes.post('/employee', register);
+
+routes.delete('/employee/:id', deleteData);
 
 export default routes;
