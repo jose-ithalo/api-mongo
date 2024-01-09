@@ -31,3 +31,16 @@ export const deleteData = async (req, res) => {
 
     return res.status(200).json('Funcionário deletado com sucesso.');
 }
+
+export const updateData = async (req, res) => {
+    const { id } = req.params;
+    const { name, age, role } = req.body;
+
+    await employee.findByIdAndUpdate({ _id: id }, {
+        name,
+        age,
+        role
+    });
+
+    return res.status(200).json('Dados atualizados');
+}
